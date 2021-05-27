@@ -1,0 +1,44 @@
+<header>
+    <div class="top">
+        <div class="top row" style="height: 55px;">
+            <div class="col-sm-6 top-middle">
+               <h2>ABC RETAIL BANK</h2>
+            </div>
+            <div class="col-sm-6 top-left" style="padding-right: 45px;">
+                <button type="button" class="btn btn-primary" #logtext (click)="Onlogin(logtext.value);" 
+                style="background-color: lightgray;color: initial;" [value]="logtxt">{{ logtxt }}</button>&nbsp;
+                <img class="rounded-circle" *ngIf="UserName" src="assets/Userimg.jpg" style="width:30px;">
+               <!-- <span style="padding-right: 40px;color: white;">WELCOME {{ UserName | uppercase }} .</span> -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="text-align: right;padding-right: 5px;">
+                <span style="padding-right: 40px;color: white;">{{ UserName | uppercase }}</span>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar" style="height: 850px;">
+        <div class="p-4 pt-5">
+            <ul class="list-unstyled components mb-5" *ngIf="IsDefault">
+                <li routerLinkActive="active"><a href="#" routerLink="/home">Home</a></li>
+                <li routerLinkActive="active"><a href="#" routerLink="/about">About</a></li>
+                <li routerLinkActive="active"><a href="#" routerLink="/application">Apply Online</a></li>        
+                <li routerLinkActive="active"><a href="#" routerLink="/contact">Contact</a></li>
+            </ul>
+            <ul class="list-unstyled components mb-5" *ngIf="IsUser">
+                <li routerLinkActive="active"><a href="#" routerLink="/overview">Overview</a></li>
+                <li routerLinkActive="active"><a href="#" routerLink="/addmoney">Add Money</a></li>
+                <li routerLinkActive="active"><a href="#" routerLink="/moneytransfer">Fund Transfer</a></li>
+            </ul>
+            <ul class="list-unstyled components mb-5" *ngIf="IsAdmin">
+                <li routerLinkActive="active"><a href="#" routerLink="/dashboard">DashBoard</a></li>
+                <li routerLinkActive="active"><a href="#" routerLink="/approval">Approval</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="container border" style="width: 1150px;margin-left: 60px;margin-top: 20px;border-radius: 8px;">
+    <h3 style="text-align: center;font-weight: bold;">Account Approval</h3>
+    <hr style="border-top: 1px solid gray;">
+    <form #frm="ngForm">
+        <div class="alert alert-success" [style]="displaysuccess">
+            <span style="font-size: 14px;"><strong>Account </strong> approved Successfully.</span>
+        </div>
+        <div class="row">
+            <div class="col-md-3 form-group">
+               Account / Customer
+                <select class="form-control" #selectedval (change)="OnitemSelected(selectedval.value)">
+                    <option value="0">Select</option>
+                    <option *ngFor="let dt of details" [value]="dt.AccountNumber">{{ dt.AccountNumber + " - " + dt.FirstName }}</option>
+                </select>
+            </div>
+        </div>
+        <div style="margin-left: 200px;" *ngIf="filterdatas.length > 0">
+            <h6 style="font-weight: bold;"><i style="color: dodgerblue;">APPROVAL INFO...</i></h6>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="hidden" [value]="filterdatas[0].id" name="id">
+                    <label for="lblAccNo" style="font-weight: bold;color: black;">Account Number</label> :
+                    <label for="lblAccountNumber" name="Accno">{{ filterdatas[0].AccountNumber }}</label>
+                </div>
+                <div class="col-md-4">
+                    <label for="lblFirnm" style="font-weight: bold;color: black;">First Name</label> :
+                    <label for="lblFirstname">{{ filterdatas[0].FirstName }}</label>
+                </div>
+                <div class="col-md-4">
+                    <label for="lbllnam" style="font-weight: bold;color: black;">Last Name</label> :
+                    <label for="lblLastName">{{ filterdatas[0].LastName }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="lblAccountTyp" style="font-weight: bold;color: black;">Account Type</label> :
+                    <label for="lblAccountType">{{ filterdatas[0].TypeofAccount }}</label>
+                </div>
+                <div class="col-md-4">
+                    <label for="lblEmailid" style="font-weight: bold;color: black;">Email</label> :
+                    <label for="lblEmail">{{ filterdatas[0].Email }}</label>
+                </div>
+                <div class="col-md-4">
+                    <label for="lblContactAddr" style="font-weight: bold;color: black;">Contact Address</label> :
+                    <label for="lblContactAddress">{{ filterdatas[0].ContactAddress }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="lblCity" style="font-weight: bold;color: black;">City</label> :
+                    <label for="CityName">{{ filterdatas[0].City }}</label>
+                </div>
+                <div class="col-md-4">
+                    <label for="lblPin" style="font-weight: bold;color: black;">Pincode</label> :
+                    <label for="lblPincode">{{ filterdatas[0].Pincode }}</label>
+                </div>
+                <div class="col-md-4">
+                    <label for="lblOccuptn" style="font-weight: bold;color: black;">Occupation</label> :
+                    <label for="lblOccupation">{{ filterdatas[0].Occupation }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="lblmobileno" style="font-weight: bold;color: black;">Mobile No.</label> :
+                    <label for="lblmobile">{{ filterdatas[0].Mobileno }}</label>
+                </div>
+                <div class="col-md-8">
+                    <label for="lblsts" style="font-weight: bold;color: black;">Status</label> :
+                    <label for="lblstatus">{{ filterdatas[0].Status }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10" style="text-align: center;">
+                    <input type="button" class="btn btn-success" value="Approve" (click)="SaveApproval()">
+                </div>
+            </div>
+            <br>
+        </div>
+    </form>
+</div>

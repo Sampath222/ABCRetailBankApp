@@ -1,0 +1,21 @@
+<div class="outerbox">
+    <form [formGroup]="frmgroup" autocomplete="off">
+        <div class="innerbox">
+            <h3 style="text-align: center;color: gray;">Login Form</h3>
+            <div class="alert alert-danger" style="height: 45px;" *ngIf="errormsg">
+                <span style="font-weight: bold;">{{ errormsg }}</span>
+            </div>
+            <div class="innerdiv form-group">
+                <label for="username">User Name</label>
+                <input id="txtusrname" name="usernm" formControlName="usernm" type="text" placeholder="User Name" class="form-control">
+            </div>
+            <div class="innerdiv form-group">
+                <label for="password">Password</label>
+                <input id="txtpassword" name="pswd" formControlName="pswd" type="password" placeholder="Password" class="form-control">
+            </div>
+            <div class="innerdiv" style="text-align: center;">
+                <button type="submit" class="btn btn-primary" style="width: 50%;" (click)="Onlogsave();">Login</button>
+            </div>
+        </div>
+    </form>
+</div>

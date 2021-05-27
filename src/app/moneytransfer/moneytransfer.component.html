@@ -1,0 +1,61 @@
+<div class="container border" style="width: 1150px;margin-left: 60px;margin-top: 20px;border-radius: 8px;">
+    <h3 style="text-align: center;font-weight: bold;">Transfer Money</h3>
+    <hr style="border-top: 1px solid gray;">
+    <form #frm="ngForm" [formGroup]="frmgrp">
+        <div class="alert alert-success" [style]="displaysuccess">
+            <span style="font-size: 14px;"><strong>Money </strong> Transferred Successfully.</span>
+        </div>
+        <div class="row">
+            <div class="col-md-2 form-group">
+                From Account
+                <select class="form-control" #accval formControlName="AccNo" #selectedval (change)="OnitemSelected(selectedval.value)">
+                    <option value="0">Select</option>
+                    <option *ngFor="let dt of details" [value]="dt.AccountNumber">{{ dt.AccountNumber }}</option>
+                </select>
+                <span *ngIf="(frmcontrols.AccNo.touched || submitted) && (frmcontrols.AccNo.errors?.required || accval.value == 0)"
+                class="text-danger font-small"><small>From Account is required</small></span>
+            </div>
+        </div>
+        <div style="margin-left: 200px;" *ngIf="filterdatas.length > 0">
+            <h6 style="font-weight: bold;"><i style="color: dodgerblue;">ACCOUNT INFO...</i></h6>
+            <hr>
+            <p><span style="font-weight: bold;">Account Number</span> : {{ filterdatas[0].AccountNumber }}</p>
+            <p><span style="font-weight: bold;">Account Type</span> : {{ filterdatas[0].TypeofAccount }}</p>
+            <p><span style="font-weight: bold;">Customer Name</span> : {{ filterdatas[0].FirstName | uppercase }}</p>
+            <p><span style="font-weight: bold;">Available Balance</span> : {{ availbal }}</p>
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="amount" style="margin-top: 6px;color: #333;font-weight: bold;">To Account</label>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-control" #toacc formControlName="ToAccNo">
+                        <option value="0">Select</option>
+                        <option *ngFor="let dt of ToAccountDetails" [value]="dt.AccountNumber">{{ dt.AccountNumber }}</option>
+                    </select>
+                    <span *ngIf="(frmcontrols.ToAccNo.touched || submitted) && (frmcontrols.ToAccNo.errors?.required || toacc.value == 0)"
+                    class="text-danger font-small"><small>To Account is required</small></span>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-1">
+                    <label for="amount" #amval style="margin-top: 6px;color: #333;font-weight: bold;">Amount</label>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" style="margin-left: 75px;" class="form-control" formControlName="Amt">
+                </div>
+            </div>
+
+            <div class="row" *ngIf="(frmcontrols.Amt.touched || submitted) && frmcontrols.Amt.errors?.required">
+                <span style="margin-left: 168px;"
+                class="text-danger font-small"><small>Amount is required</small></span>
+            </div>
+            <div class="row" *ngIf="balflag" style="margin-left: 153px;">
+                <span class="text-danger font-small">
+                    <small>Available Balance is Rs.{{ availbal }}. Please Enter within Balance Amount</small>
+                </span>
+            </div>
+            <br><br>
+            <p><input type="button" class="btn btn-success" value="Transfer" (click)="TransferMoney(frm)"></p>
+        </div>
+    </form>
+</div>

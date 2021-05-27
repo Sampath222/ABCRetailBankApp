@@ -1,0 +1,38 @@
+<div class="container border" style="width: 1150px;margin-left: 60px;margin-top: 20px;border-radius: 8px;">
+    <h3 style="text-align: center;font-weight: bold;">Add Money to Savings Account</h3>
+    <hr style="border-top: 1px solid gray;">
+    <form #frm="ngForm" [formGroup]="frmgrp">
+        <div class="alert alert-success" [style]="displaysuccess">
+            <span style="font-size: 14px;"><strong>Money </strong> added Successfully.</span>
+        </div>
+        <div class="row">
+            <div class="col-md-2 form-group">
+                Account No.
+                <select class="form-control" #acv formControlName="AccNo" #selectedval (change)="OnitemSelected(selectedval.value)">
+                    <option value="0">Select</option>
+                    <option *ngFor="let dt of details" [value]="dt.AccountNumber">{{ dt.AccountNumber }}</option>
+                </select>
+                <span *ngIf="(frmcontrols.AccNo.touched || submitted) && (frmcontrols.AccNo.errors?.required || acv.value == 0)"
+                class="text-danger font-small"><small>Account No. is required</small></span>
+            </div>
+        </div>
+        <div style="margin-left: 200px;" *ngIf="filterdatas.length > 0">
+            <h6 style="font-weight: bold;"><i style="color: dodgerblue;">ACCOUNT INFO...</i></h6>
+            <hr>
+            <p><span style="font-weight: bold;">Account Number</span> : {{ filterdatas[0].AccountNumber }}</p>
+            <p><span style="font-weight: bold;">Account Type</span> : Savings Bank Account</p>
+            <p><span style="font-weight: bold;">Customer Name</span> : {{ filterdatas[0].FirstName | uppercase }}</p>
+            <div class="row">
+                <div class="col-md-1">
+                    <label for="amount" style="margin-top: 6px;color: #333;font-weight: bold;">Amount</label>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" style="margin-left: 6px;" formControlName="Amt" class="form-control">
+                    <span style="margin-left: 12px;" *ngIf="(frmcontrols.Amt.touched || submitted) && frmcontrols.Amt.errors?.required"
+                    class="text-danger font-small"><small>Amount is required</small></span>
+                </div>
+            </div><br>
+            <p><input type="button" class="btn btn-success" value="Add Money" (click)="AddMoney(frm)"></p>
+        </div>
+    </form>
+</div>

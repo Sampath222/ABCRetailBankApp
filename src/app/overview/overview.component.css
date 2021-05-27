@@ -1,0 +1,12 @@
+table tbody tr td{
+    color:black;
+}
+
+table thead th{
+    text-align: center;
+}
+
+table thead{
+    background-color: cornflowerblue;
+    color: white;
+}

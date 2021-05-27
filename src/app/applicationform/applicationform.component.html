@@ -1,0 +1,150 @@
+<div class="container border" style="width: 1150px;margin-left: 60px;margin-top: 20px;border-radius: 8px;">
+    <h3 style="text-align: center;font-weight: bold;">Account Opening Form</h3>
+    <hr style="border-top: 1px solid gray;">
+    <form #formvalues="ngForm" [formGroup]="frmgrp" autocomplete="off">
+        <div class="alert alert-danger" style="height: 45px;" *ngIf="errormsg">
+            <span style="font-weight: bold;">{{ errormsg }}</span>
+        </div>
+        <div class="alert alert-success" [style]="displaysuccess">
+            <span style="font-size: 14px;"><strong>Account</strong> created Successfully.</span>
+        </div>
+        <h6 style="font-weight: bold;">Contact Information</h6><hr>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <select class="form-control" #titval formControlName="title">
+                        <option value="">Select</option>
+                        <option value="1">Mr</option>
+                        <option value="2">Ms</option>
+                    </select>
+                    <span *ngIf="(appfrmcontrols.title.touched || submitted) && (appfrmcontrols.title.errors?.required || titval.value == 0)"
+                    class="text-danger font-small"><small>Title is required</small></span>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text" formControlName="firstName" name="FirstName" class="form-control">
+                    <span *ngIf="(appfrmcontrols.firstName.touched || submitted) && appfrmcontrols.firstName.errors?.required"
+                    class="text-danger font-small"><small>First Name is required</small></span>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" formControlName="lastName" name="LastName" class="form-control">
+                    <span *ngIf="(appfrmcontrols.lastName.touched || submitted) && appfrmcontrols.lastName.errors?.required"
+                    class="text-danger font-small"><small>Last Name is required</small></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" formControlName="email" name="Email" class="form-control">
+                    <span *ngIf="(appfrmcontrols.email.touched || submitted) && appfrmcontrols.email.errors?.required"
+                    class="text-danger font-small"><small>Email is required</small></span>
+                    <span *ngIf="(appfrmcontrols.email.touched || submitted) && appfrmcontrols.email.errors?.email"
+                    class="text-danger font-small"><small>Invalid Email Address</small></span>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" #pwdv (keyup)="pwdlen(pwdv.value)" name="Password" class="form-control">
+                    <span *ngIf="(appfrmcontrols.password.touched || submitted) && appfrmcontrols.password.errors?.required"
+                    class="text-danger font-small"><small>Password is required</small></span>
+                    <span *ngIf="pwd!= '' && pwd.length < 6"
+                    class="text-danger font-small"><small>Password must be atleast 6 Characters</small></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label for="address">Contact Address</label>
+                <input type="text" formControlName="address" name="ContactAddress" class="form-control">
+                <span *ngIf="(appfrmcontrols.address.touched || submitted) && appfrmcontrols.address.errors?.required"
+                    class="text-danger font-small"><small>Contact Address is required</small></span>
+            </div>
+            <div class="col-md-2">
+                <label for="city">City</label>
+                <input type="text" formControlName="city" name="City" class="form-control">
+                <span *ngIf="(appfrmcontrols.city.touched || submitted) && appfrmcontrols.city.errors?.required"
+                    class="text-danger font-small"><small>City is required</small></span>
+            </div>
+            <div class="col-md-3">
+                <label for="state">State</label>
+                <select class="form-control" #stval formControlName="state">
+                    <option value="0" selected>Select</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                </select>
+                <span *ngIf="(appfrmcontrols.state.touched || submitted) && (appfrmcontrols.state.errors?.required || stval.value == 0)"
+                    class="text-danger font-small"><small>State is required</small></span>
+            </div>
+            <div class="col-md-2">
+                <label for="pincode">PinCode</label>
+                <input type="number" formControlName="pincode" name="Pincode" class="form-control">
+                <span *ngIf="(appfrmcontrols.pincode.touched || submitted) && appfrmcontrols.pincode.errors?.required"
+                    class="text-danger font-small"><small>Pincode is required</small></span>
+            </div>
+        </div>
+        <h6 style="font-weight: bold;margin-top: 19px;">Employment Information</h6><hr>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="occupation">Occupation</label>
+                <input type="text" formControlName="occupation" name="Occupation" class="form-control">
+                <span *ngIf="(appfrmcontrols.occupation.touched || submitted) && appfrmcontrols.occupation.errors?.required"
+                    class="text-danger font-small"><small>Occupation is required</small></span>
+            </div>
+            <div class="col-md-2">
+                <label for="emptype">Employment Type</label>
+                <select class="form-control" #empval formControlName="employmenttype">
+                    <option value="0" selected>Select</option>
+                    <option value="Salaried">Salaried</option>
+                    <option value="Self-Employed">Self-Employed</option>
+                </select>
+                <span *ngIf="(appfrmcontrols.employmenttype.touched || submitted) && (appfrmcontrols.employmenttype.errors?.required || empval.value == 0)"
+                    class="text-danger font-small"><small>Employment Type is required</small></span>
+            </div>
+            <div class="col-md-4">
+                <label for="typeofaccount">Type of Account</label>
+                <select class="form-control" #toa formControlName="typeofaccount">
+                    <option value="0" selected>Select</option>
+                    <option value="Current Account">Current Account</option>
+                    <option value="Savings Account">Savings Account</option>
+                    <option value="Salary Account">Salary Account</option>
+                </select>
+                <span *ngIf="(appfrmcontrols.typeofaccount.touched || submitted) && (appfrmcontrols.typeofaccount.errors?.required || toa.value == 0)"
+                    class="text-danger font-small"><small>Type of Account is required</small></span>
+            </div>
+            <div class="col-md-2">
+                <label for="mobileno">Mobile No.</label>
+                <input type="number" formControlName="mobileno" name="Mobileno" class="form-control">
+                <span *ngIf="(appfrmcontrols.mobileno.touched || submitted) && appfrmcontrols.mobileno.errors?.required"
+                    class="text-danger font-small"><small>Mobile No is required</small></span>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="container col-md-16">
+                <p>
+                    <input type="checkbox" formControlName="chk">&nbsp;&nbsp;
+                    I hereby agree that the information given is true, accurate and complete as of the date of this application submission.
+                    <span style="color: red;">*&nbsp;*</span><br>
+                    <span *ngIf="(appfrmcontrols.chk.touched || submitted) && appfrmcontrols.chk.errors?.required"
+                    class="text-danger font-small"><small>Please Agree our Terms and Conditions</small></span>
+                </p>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col-md-6" style="text-align: right;">
+                <input type="submit" class="btn btn-success" (click)="SaveApplication(formvalues)" value="Submit">
+            </div>
+            <div class="col-md-6">
+                <input type="button" class="btn btn-secondary" value="Clear">
+            </div>
+        </div>
+    </form>
+</div>

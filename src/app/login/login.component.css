@@ -1,0 +1,53 @@
+.txtbox {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid lightsteelblue;
+}
+
+button {
+    background-color: blueviolet;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 6px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.outerbox {
+    width: 60%;
+    background-color: white;
+    margin-left: 430px;
+    margin-top: 130px;
+    /* border-radius: 20px; */
+}
+
+.outerboxlarge{
+    width: 40%;
+    background-color: white;
+    margin-left: 100px;
+    margin-top: 90px;
+    /* border-radius: 20px; */
+}
+
+.innerbox {
+    border: 1px solid;
+    border-color: lightgray;
+    padding: 10px;
+    box-shadow: 5px 7px 10px #888888;
+    /* border-radius: 20px; */
+}
+
+.innerdiv {
+    padding-left: 20px;
+    padding-right: 20px;
+}
